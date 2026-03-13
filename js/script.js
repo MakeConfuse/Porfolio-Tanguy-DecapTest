@@ -34,11 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector("#mobile-menu");
     const menu = document.querySelector(".menu");
     const menuLinks = document.querySelectorAll(".menu li a");
+    const mainNav = document.querySelector("nav");
 
     if (menuToggle && menu) {
         menuToggle.addEventListener("click", () => {
             menuToggle.classList.toggle("active");
             menu.classList.toggle("active");
+            if (mainNav) mainNav.classList.toggle("nav-active");
             document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
         });
 
@@ -47,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener("click", () => {
                 menuToggle.classList.remove("active");
                 menu.classList.remove("active");
+                if (mainNav) mainNav.classList.remove("nav-active");
                 document.body.style.overflow = "auto";
             });
         });
