@@ -1,0 +1,29 @@
+# Configuration du backend
+backend:
+  name: github
+  repo: MakeConfuse/Porfolio-Tanguy-DecapTest # <--- MODIFIEZ CECI (ex: monclient/monportfolio)
+  branch: main # <--- La branche sur laquelle le CMS fera les pushs (main ou master)
+  # Pour l'authentification OAuth (nécessaire pour Cloudflare Pages)
+  auth_scope: repo
+
+# Emplacement où les images seront stockées
+media_folder: "assets/img/dessins" # <--- Créez ce dossier dans votre projet si nécessaire
+public_folder: "/assets/img/dessins"
+
+# Configuration des collections (les types de contenu)
+collections:
+  - name: "dessins"
+    label: "Mes Dessins"
+    folder: "content/dessins" # <--- Créez ce dossier vide dans votre projet (c'est là que les données de chaque dessin seront stockées)
+    create: true # Autoriser la création de nouveaux dessins
+    slug: "{{title}}" # Le nom du fichier de données sera basé sur le titre
+    fields: # Les champs du formulaire d'ajout
+      - { label: "Titre du dessin", name: "title", widget: "string" }
+      - label: "Catégorie"
+        name: "category"
+        widget: "select"
+        options: # Les deux catégories demandées
+          - { label: "Dessin Numérique", value: "numérique" }
+          - { label: "Dessin Traditionnel", value: "tradi" }
+      - { label: "Image", name: "image", widget: "image" } # Le champ d'upload d'image
+      - { label: "Description (optionnelle)", name: "body", widget: "markdown", required: false }
